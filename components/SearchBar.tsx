@@ -50,9 +50,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ // Renamed component
   }, []);
 
   return (
-    <div className="relative z-10 w-full max-w-xl flex flex-col items-center space-y-8 p-6 md:p-8 bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-xl shadow-2xl border border-gray-700
-                    dark:bg-gray-800 dark:bg-opacity-60 dark:border-gray-600">
-
+    <div className="relative z-10 w-full max-w-xl flex flex-col items-center space-y-8 p-6 md:p-8 bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-xl shadow-2xl border border-gray-700 dark:bg-gray-800 dark:bg-opacity-60 dark:border-gray-600">
       {/* Profile Picture, Time, and Date in a row */}
       <div className="flex items-center w-full justify-center space-x-4">
         {/* Profile Picture */}

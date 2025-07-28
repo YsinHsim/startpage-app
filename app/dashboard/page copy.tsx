@@ -4,12 +4,11 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
-import { Button } from "@/components/ui/button"
 
 // Import your main content component and new navbar
+import DashboardMainView from '@/components/DashboardMainView';
 import DashboardNavbar from '@/components/DashboardNavbar';
 import WallpaperManagement from '@/components/WallpaperManagement';
-import SearchBar from '@/components/SearchBar';
 
 // Mock Data for initial states and fallbacks if data fetching fails or is slow
 // In a real application, these would ideally be replaced entirely by fetched data.
@@ -128,7 +127,7 @@ const DashboardPage: React.FC = () => {
 
       const resolvedWallpaperUrl = data.user.currentWallpaperUrl || initialMockUser.currentWallpaperUrl;
       setWallpaperUrl(resolvedWallpaperUrl);
-      console.log('Wallpaper URL set to:', resolvedWallpaperUrl);
+      console.log('Wallpaper URL set to:', resolvedWallpaperUrl); // Log the set URL
       
       const initialSearchEngine = data.searchEngines.find(se => se.id === data.user.selectedSearchEngineId) || data.searchEngines[0];
       setSelectedSearchEngine(initialSearchEngine || null);
@@ -251,10 +250,10 @@ const DashboardPage: React.FC = () => {
 
   // Only render dashboard content if authenticated and data is loaded
   if (session && dashboardData) {
-    console.log('Rendering dashboard with wallpaperUrl:', wallpaperUrl);
+    console.log('Rendering dashboard with wallpaperUrl:', wallpaperUrl); // Log at render time
     return (
       <div
-        className="min-h-screen flex flex-col items-center justify-center p-4 bg-cover bg-center transition-all duration-500 ease-in-out" // Added justify-center
+        className="min-h-screen flex flex-col items-center justify-center p-4 bg-cover bg-center transition-all duration-500 ease-in-out"
         style={{ backgroundImage: `url(${wallpaperUrl})` }}
       >
         {/* Removed the overlay div completely to test background visibility */}
@@ -271,7 +270,7 @@ const DashboardPage: React.FC = () => {
 
         {/* Conditional Rendering of Main Content Area */}
         {currentView === 'main' ? (
-          <SearchBar
+          <DashboardMainView
             searchQuery={searchQuery}
             onSearchQueryChange={setSearchQuery}
             onSearch={handleSearch}
